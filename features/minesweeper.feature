@@ -12,5 +12,8 @@ Given the box is hidden
 When in screen is shown a mine in the box
 Then all the hidden boxes are no longer hidden and game finish
 
-Scenario: 
+Scenario: User click a hidden number
+Given the box is hidden
+When in screen is shown a number in the box
+Then
 
