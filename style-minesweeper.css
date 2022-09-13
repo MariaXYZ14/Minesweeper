@@ -39,6 +39,10 @@ td{
     height:3vh; 
     border-radius:3px;
     border-radius:4%;
+    outline-style: groove;
+    outline-color: #245223;
+    border:solid #286d27;
+
 
 }
 
