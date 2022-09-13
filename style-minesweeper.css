@@ -9,12 +9,12 @@ body{
 
 #game{
     
-    background-color:#36261b;
-    border-radius:2%;
+    background-image: linear-gradient(61deg, rgba(69,41,32,1) 0%, rgba(101,50,33,1) 25%, rgba(102,43,23,1) 69%);
     height:60vh;
     width:30vw;
     margin: 20vh auto 10vh;
     text-align: center;
+    border-radius:3%;
 
 }
 
@@ -35,8 +35,7 @@ body{
 
 td{
 
-    background-color:#23a117;
-    width:6vw;
+    background-image: linear-gradient(0deg, rgba(50,70,39,1) 0%, rgba(42,102,28,1) 25%, rgba(45,152,20,1) 69%);    width:6vw;
     height:3vh; 
     border-radius:3px;
     border-radius:4%;
@@ -48,15 +47,22 @@ td{
     width:9vw;
     height:5vh;
     display:inline-block;
-    background-color:rgb(255, 255, 255);
+    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(180,180,180,1) 98%);
     margin:2vh auto 2vh;
-    border-radius:4%;
+    border-radius:1vh;
 
 
 }
 
 #life-indicator{
-
+    position:relative;
     width:4vw;
-   
+    bottom:2.95vh;
+  
+}
+
+#face{
+
+    font-size:3.8vh;
+    
 }
