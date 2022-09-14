@@ -17,6 +17,7 @@ body{
     text-align: center;
     border-radius:3%;
     border:1vh solid #000000;
+
 }
 
 #main{
@@ -31,6 +32,7 @@ body{
     outline-color: #000000;
 
 }
+
 #panel{
 
     height:40vh;
@@ -65,6 +67,7 @@ td{
 }
 
 #life-indicator{
+    
     position:relative;
     width:4vw;
     bottom:2.95vh;
