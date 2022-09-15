@@ -28,6 +28,22 @@ Given the game finish
 When is shown <timer>
 Then th <timer> will be stop
 
+Scenario:Initial face
+Given the game starts
+When is shown <face>
+And <face> = 1
+Then the face icon change a neutral face 
+
+Scenario: Face when user wins
+Given the game finish
+When the user win
+Then the <face>=2 and the face icon change a happy face
+
+Scenario: Face when user lost
+Given the user finish
+When the user lost
+The the <face>=3 and the face icon change a sad face
+
 Scenario Outline:User click a hidden mine
 Given the box is hidden
 When in game screen is shown a <mine> in the box
