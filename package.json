@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.5.3",
+    "playwright": "^1.25.2"
+  },
+  "scripts": {
+
+    "test:beta": "cucumber-js --require steps/cucumber.conf.js --require steps/minesweeper-steps.js --tags \"not @manual\" --parallel 4"
+  
+  }
+}
+
+

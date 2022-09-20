@@ -22,7 +22,14 @@ Examples:
 |elements     |values|
 |hiddenMines  |  -1  |
 |unlockedMines|   0  |
-|numbers	  |  1-8 |
+|numbers	  |  1   |
+|numbers	  |  2   |
+|numbers	  |  3   |
+|numbers	  |  4   |
+|numbers	  |  5   |
+|numbers	  |  6   |
+|numbers	  |  7   |
+|numbers	  |  8   |
 |hiddenBoxes  | null |
 
 Scenario: Number of initial flags
@@ -108,9 +115,8 @@ Then the user win and game finished
 
 
 Scenario Outline: User click a hidden mine in the first round
-Given the game starts
-When the user click a <hiddenMines>
-Then the all hidden mines are unlocked and game finish
+When the user click a "<hiddenMine>"
+Then the all hidden mines are unlocked and "<gameOver>"
 
 Examples:
 
