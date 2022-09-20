@@ -20,9 +20,12 @@ Examples:
 |numbers	  |  6   |
 |numbers	  |  7   |
 |numbers	  |  8   |
-|hiddenBoxes  |  -   |
+|hiddenBox    |  -   |
 |flag         |  !   |
+|flagsCont    |  10  |
 |interrogation|  ?   |
+|gameOver     | 0/ 1 |
+|timer        |0/1   |
 
 Scenario Outline: load game board data
 When the game starts
@@ -42,11 +45,11 @@ Examples:
 
 Scenario Outline: load visible game board data
 When the game starts
-Then the "<ViisbleBoardData>" is charging in the game
+Then the "<VisibleBoardData>" is charging in the game
 
 Examples:
 
-| ViisbleBoardData | row |
+| VisibleBoardData | row |
 | 	 --------  	   |  1  |
 |	 --------  	   |  2  |
 | 	 --------  	   |  3  |
@@ -56,17 +59,23 @@ Examples:
 | 	 --------      |  7  |
 | 	 --------      |  8  |
 
-Scenario Outline: A mine is activated
-When the  "<mine>" is actived 
-Then the game stage change to "<gameOver>"
-
 Scenario Outline: User click a mine in the first round
 When the user click a "<mine>"
-Then the game stage change to "<gameOver>" and "<hiddenBoxes>" change to "<mine>" 
+Then the game state change to "<gameOver>":"1" and "<hiddenBox>" change to "<mine>" 
+
+| VisibleBoardData | row |
+| 	 ---*----  	   |  1  |
+|	 --------  	   |  2  |
+| 	 --------  	   |  3  |
+|  	 --------  	   |  4  |
+| 	 --------  	   |  5  |
+|	 --------      |  6  |
+| 	 --------      |  7  |
+| 	 --------      |  8  |
 
 Scenario: Default display screen
 Given the game starts
-When in "<VisbleBoardData>" is shown "hiddenBoxes" are hidden
+When in "<VisibleBoardData>" is shown "<hiddenBox>" are hidden
 Then the user could play
 
 Examples:
@@ -83,8 +92,60 @@ Examples:
 
 Scenario: Default mines field 
 When in screen is shown "<VisbleBoardData>"
-Then the size of field is eight "rows" and eight characters in "<VisbleBoardData>"
+Then the size of field is eight "<rows>" and eight characters in "<VisbleBoardData>"
+
+Scenario Outline: Game State when the game is in progress
+When game have started
+Then the "<gameOver>"  will have the following next value:0
+
+Scenario Outline: Game State when the game is finish
+When game have finished
+Then the "<gameOver>"  will have the following next value:1
 
 Scenario: Number of initial flags
 When the game starts
-Then the "<flag>" will have the following next value:10
+Then the "<flagsCont>" will have the following next value:10
+
+Scenario Outline: User click the right button to enter a flag
+Given the game state  be "<gameOver>":"0"
+When "<hiddenBox>" change to "<flag>"
+Then "<flagCont>" will be one subtracted from its value
+
+Examples:
+
+| VisibleBoardData | row |
+| 	 --------  	   |  1  |
+|	 ----!---  	   |  2  |
+| 	 --------  	   |  3  |
+|  	 --------  	   |  4  |
+| 	 --------  	   |  5  |
+|	 --------      |  6  |
+| 	 --------      |  7  |
+| 	 --------      |  8  |
+
+|flagCont|
+|  9 	 |
+
+Scenario Outline: Flags counter at the end of the game
+When user click "<flag>" and game state change to "<gameOver>":"1"
+Then "<flagCont>" couldn't increase
+
+Examples:
+
+| VisibleBoardData | row |
+| 	 ----*---  	   |  1  |
+|	 ----*---  	   |  2  |
+| 	 ----*---  	   |  3  |
+|  	 ----*---  	   |  4  |
+| 	 ----*---  	   |  5  |
+|	 ----*---      |  6  |
+| 	 ----*---      |  7  |
+| 	 ----*---      |  8  |
+
+Scenario Outline: timer actived 
+When game have started
+Then the "<timer>"  will have the following next value:"1"
+
+Scenario Outline: timer disactived 
+When game have started
+Then the "<timer>"  will have the following next value:"0"
