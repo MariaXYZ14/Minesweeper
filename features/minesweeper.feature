@@ -8,6 +8,23 @@ Given the game starts
 When in screen is shown and all boxes are hidden
 Then the user could play
 
+Scenario: Default mines field 
+Given until the game starts
+When in screen is shown a mines field
+Then the size of field is 8 mines of width and 8 mines of height
+
+
+Scenario:Initial graphical elements values
+When the game starts
+Then  the <elements> have the text <values>
+Examples:
+ 
+|elements     |values|
+|hiddenMines  |  -1  |
+|unlockedMines|   0  |
+|numbers	  |  1-8 |
+|hiddenBoxes  | null |
+
 Scenario: Number of initial flags
 Given the game starts
 When is shown the <flagsCont>
@@ -89,3 +106,21 @@ Given the user click the last hidden box
 When all boxes are unlocked and mines hidden
 Then the user win and game finished
 
+
+Scenario Outline: User click a hidden mine in the first round
+Given the game starts
+When the user click a <hiddenMines>
+Then the all hidden mines are unlocked and game finish
+
+Examples:
+
+|	|	|	| -1|	|	|	|-1	|
+|	|	|	|	|	|-1	|	|	|
+|	|	|	|	|	|	|	|	|
+|	|	|	|	|	|	|	|	|
+|	|	|-1	| 	|-1 |	|	|-1	|
+|	|	|	|-1	|	|	|	|-1	|
+|-1	|	|	|	|	|	|	|	|
+|	|	|	|	|	|	|	|-1	|
+
+Scenario: 
