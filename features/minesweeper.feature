@@ -3,14 +3,20 @@ _____________________________
                         
 GLOSSARY OF TERMS
 
+Board data:
 mine => |*|
-hiddenCell => |x|
 emptyCell => |-|
+
+Board info:
+emptyCell => |-|
+hiddenCell => |x|
 mine => |*|
 flag => |!|
 interrogation => |?|
-mine not placed correctly => |X|
-numbers => |1-8|
+mine not tagged correctly => |X|
+number of adjacent mines => |1-8|
+
+cell position on the board => (1,2) means row 1 column 2
 _____________________________
 
 Background:
@@ -20,44 +26,59 @@ Scenario: Validating the dimensions of the minefield
 Then the height of the minefield should be eight rows
 And the width of the minefield should be eight columns
 
-Scenario: Clicking a cell with a mine
-When the user click cell "(1,1)"
+Scenario: Discovering a cell with a mine, the user should lose the game
+Given the user load the following board: "*-"
+When the user discover the cell "(1,1)"
 Then  the cell "(1,1)" should show a mine 
-And game over
+And the game should be over
 
-Scenario: User win the game
-Given the user click cell "(8,8)"
-When all mines haven't clicked
-Then the user is the winner
+Scenario: Discovering all the cells without mine, the user should win the game
+Given the user load the following board: "*-"
+When the user discover the cell "(1,2)"
+Then the user should win the game
 
-Scenario Outline: Clicking a cell with mines around
-Given the user load the "<board>"
-When the user click  cell "(2,5)"
-Then the cell "(2,5)" should show a "<number>"
+Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
+Given the user load the following board: "<board>"
+When the user discover  cell "(2,2)"
+Then the cell "(2,2)" should show a "<number>"
 
 |    board    |  number |
-| xx*/xxx/xxx |    1    |    
-| xx*/xxx/*xx |    2    |
-| xx*/xxx/**x |    3    |
-| xx*/xxx/*** |    4    |
-| x**/xxx/*** |    5    |
-| ***/xxx/*** |    6    |
-| ***/*xx/*** |    7    |
-| ***/*x*/*** |    8    |
+| --*/---/--- |    1    |    
+| --*/---/*-- |    2    |
+| --*/---/**- |    3    |
+| --*/---/*** |    4    |
+| -**/---/*** |    5    |
+| ***/---/*** |    6    |
+| ***/*--/*** |    7    |
+| ***/*-*/*** |    8    |
 
-Scenario: A neighbor unlocks an empty cell
-Given the user click cell "(4,3)" and cell with number should show "1"
-When the user click cell "(3,3)"
-Then the cell is unlocked and should show as empty cell
+Scenario: Discovering a cell without mine & surrounding mines, should be empty
+Given the user load the following board: "---/---/---/***"
+When the user discover cell  "(2,2)"
+Then the cell "(2,2)" should be empty
 
-Scenario Outline: Clicking a cell without numbers or mines
-Given the user load the "<board>"
-When the user click cell 
-Then the "<baord>" unlocked to "<boardUnlocked>"
+Scenario: Discovering and empty cell, discover the surrounding cells
+Given the user load the following board: "---/---/---/***"
+When the user discover cell "(2,2)"
+Then the board should look like: "---/---/---/xxx"
 
-|        board        |     boardUnlocked     |
-| xxxx/xxxx/xxxx/xxxx | 1112/---1/--12/--1x   |
-|     xxx/xx*/xxx     |      x1-/x1-/x1-      | 
-|     xxx/xxx/xxx     |      111/1-1/111      |   
+Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
+Given the user load the following board:
 
+"""
+----
+---*
+---*
+----
+"""
+
+When the user discover cell "(1,4)"
+Then the board should look like: 
+
+"""
+--11
+1-2x
+1-2x
+213x
+"""
 
