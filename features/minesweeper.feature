@@ -47,8 +47,8 @@ Then the timer should be disabled
 
 @manual
 Scenario: After 999 seconds, timer should be infinity  
-Given the user change the initial time to "998"
-When the timer pass the value "999"
+Given the user set the next mock timer: "999"
+When el usr pone banderita en la 1,1
 Then the timer value should be "infinity"
 
 Scenario: Initial face icon, neutral by default
@@ -65,8 +65,18 @@ When the user discover the cell "(1,2)"
 Then the user should win the game 
 And the user icon should be happy face
 
-@manual
-Scenario: Resetting game, face icon is discovered
-Given the game should be over
-When user discover a face icon
+Scenario: Reseting a game, restore the innitial state
+Given the user load the following board:"*--/---/---"
+And the user discover cell "(1,2)" 
+And board should look like: "x1-/---/---"
+When the user resets the game
+Then the not tagged mines counter should be "10"
+And the timer should be disabled 
+And board should look like:"---/---/---"
+
+Scenario: Resetting game using the face button with the mouse
+Given the user load the following board:"*--/---/---"
+And the user discover cell "(1,2)" 
+And board should look like: "x1-/---/---"
+When the user clicks on face icon
 Then the game is reset

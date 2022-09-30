@@ -12,7 +12,7 @@ emptyCell => |-|
 hiddenCell => |x|
 mine => |*|
 flag => |!|
-interrogation => |?|
+uncertain mined cell => |?|
 mine not tagged correctly => |X|
 number of adjacent mines => |1-8|
 
@@ -81,12 +81,6 @@ Then the board should look like:
 1-2x
 213x
 """
-
-Scenario: Tagging a cell as mined (Tagging with a Flag)
-Given the user load the following board: "--"
-When the user tags as mined the cell "(1,1)"
-Then the board should look like:"!-"
-
 Scenario Outline: Discovering a cell is tagged a cell as mined & it is not a hidden mine
 Given the user load the following board: "<board>"
 When the user tags as mined the cell "(1,1)"
@@ -96,19 +90,20 @@ Then the board should show a "<boardResult>"
 | !-  |     1-    |
 | !-  |   	--    |
 
-@manual
+Scenario: Tagging a cell as mined (Tagging with a Flag)
+When the user tags as mined the cell "(1,1)"
+Then the cell "(1,1)" should show a flag symbol
+
 Scenario: Mines counter as tagging a cell as mined 
 Given the not tagged mines counter is "10"
 When the user tags as mined the cell "(1,1)"
 Then the not tagged mines counter should be "9"
 
-Scenario: Tagging a cell as possible mined (Tagging with a Interrogation) 
-Given the user load the following board: "!-"
-When the user tags as possible mined the cell "(1,1)"
-Then the board should look like:"?-"
+Scenario: Tagging a cell as uncertain mined (Tagging with a Interrogation) 
+When the user tags as uncertain mined the cell "(1,1)"
+Then the cell "(1,1)" should show a uncertain mined cell symbol
 
-@manual
-Scenario: Mines countrer as tagging a cell as possible mined 
+Scenario: Mines countrer as tagging a cell as uncertain mined 
 When the not tagged mines counter should be "9"
-And the user tags as possible mined the cell "(1,1)"
+And the user tags as uncertain mined the cell "(1,1)"
 Then the not tagged mines counter should be "10"
