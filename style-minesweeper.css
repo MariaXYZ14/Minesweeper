@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+
+body{
+
+    font-family:'Exo', sans-serif;
+    background:linear-gradient(90deg, rgba(150,213,237,1) 19%, rgba(165,219,240,1) 27%, rgba(180,225,242,1) 44%, rgba(195,231,245,1) 58%, rgba(180,225,242,1) 77%, rgba(165,219,240,1) 85%, rgba(150,213,237,1) 93%);
+
+}
+
+#game{
+    
+    background-image: linear-gradient(10deg, rgba(10,8,7,1) 0%, rgba(50,38,32,1) 6%, rgba(62,47,40,1) 18%, rgba(85,61,49,1) 31%, rgba(89,60,46,1) 50%, rgba(100,64,43,1) 66%, rgba(109,67,41,1) 79%, rgba(119,70,38,1) 94%);
+    height:60vh;
+    width:30vw;
+    margin: 20vh auto 10vh;
+    text-align: center;
+    border-radius:3%;
+    border:1vh solid #000000;
+
+}
+
+#main{
+ 
+    height:10vh;
+    width:25vw;
+    margin:3vh auto;
+    background-color:blue;
+    border-radius:3vh;
+    background-image: linear-gradient(25deg, rgba(5,5,5,1) 0%, rgba(38,38,38,1) 79%, rgba(50,49,48,1) 94%);
+    outline-style: groove;
+    outline-color: #000000;
+
+}
+
+#panel{
+
+    height:40vh;
+    width:25vw;
+    margin:auto;
+
+}
+
+td{
+
+    background-image: linear-gradient(0deg, rgba(50,70,39,1) 0%, rgba(42,102,28,1) 25%, rgba(45,152,20,1) 69%);    width:6vw;
+    height:3vh; 
+    border-radius:3px;
+    border-radius:4%;
+    outline-style: groove;
+    outline-color: #245223;
+    border:solid #286d27;
+
+
+}
+
+.markers{
+    
+    width:9vw;
+    height:5vh;
+    display:inline-block;
+    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(180,180,180,1) 98%);
+    margin:2vh auto 2vh;
+    border-radius:1vh;
+
+
+}
+
+#life-indicator{
+    
+    position:relative;
+    width:4vw;
+    bottom:2.95vh;
+  
+}
+
+#face{
+
+    font-size:3.8vh;
+    
+}
