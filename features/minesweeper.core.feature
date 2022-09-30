@@ -19,6 +19,7 @@ number of adjacent mines => |1-8|
 cell position on the board => (1,2) means row 1 column 2
 _____________________________
 
+
 Background:
 	Given a user opens the app
 

@@ -3,6 +3,7 @@ Feature: Minesweeper
 Background:
 	Given a user opens the app
 
+@toDo
 Scenario: Number of initial not tagged mined counter
 Then the not tagged mined counter should be "10"
 
