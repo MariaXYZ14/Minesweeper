@@ -23,6 +23,7 @@ _____________________________
 Background:
 	Given a user opens the app
 
+@current
 Scenario: Validating the dimensions of the minefield
 Then the height of the minefield should be eight rows
 And the width of the minefield should be eight columns
