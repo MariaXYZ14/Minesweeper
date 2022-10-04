@@ -10,6 +10,8 @@ Given('a user opens the app', async () => {
 
 });
 
+//Validating the dimensions of the minefield
+
 Then('the height of the minefield should be eight rows', async () => {
 
 	let rows = await page.locator('#panel tr');
@@ -36,7 +38,7 @@ Then('the not tagged mined counter should be {string}', async (string) => {
 
 //Initial face icon, neutral by default
 
-/*Then('the not tagged mined counter should be {string}', async (string) => {
-	const taggedMined = await page.locator('data-testid=face').innerText();
-	expect(taggedMined).toBe(string);
-});*/
+Then('the face icon should be a neutral face', async () => {
+
+	return 'pending';
+  });

@@ -3,7 +3,7 @@ Feature: Minesweeper
 Background:
 	Given a user opens the app
 
-@toDo
+
 Scenario: Number of initial not tagged mined counter
 Then the not tagged mined counter should be "10"
 
@@ -52,6 +52,7 @@ Given the user set the next mock timer: "999"
 When el usr pone banderita en la 1,1
 Then the timer value should be "infinity"
 
+@current
 Scenario: Initial face icon, neutral by default
 Then the face icon should be a neutral face 
 

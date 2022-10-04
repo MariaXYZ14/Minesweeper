@@ -43,7 +43,8 @@ body{
 
 td{
 
-    background-image: linear-gradient(0deg, rgba(50,70,39,1) 0%, rgba(42,102,28,1) 25%, rgba(45,152,20,1) 69%);    width:6vw;
+    background-image: linear-gradient(0deg, rgba(50,70,39,1) 0%, rgba(42,102,28,1) 25%, rgba(45,152,20,1) 69%);
+    width:6vw;
     height:3vh; 
     border-radius:3px;
     border-radius:4%;
@@ -53,6 +54,36 @@ td{
 
 
 }
+
+.mine{
+   
+    background-image:url('images/mine.png');
+    background-position: 50% 50%;  
+    background-size: cover;          
+    background-repeat:no-repeat; 
+    width:6vw;
+    height:3vh; 
+    border-radius:3px;
+    border-radius:4%;
+    outline-style: groove;
+    outline-color: #bebfbe;
+    border:solid #dcdfdc;
+}
+
+.cellWithoutMines{
+
+    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,250,255,1) 25%, rgba(217,218,221,1) 69%);
+    width:6vw;
+    height:3vh; 
+    border-radius:3px;
+    border-radius:4%;
+    outline-style: groove;
+    outline-color: #bebfbe;
+    border:solid #dcdfdc;
+
+}
+
+
 
 .markers{
     
@@ -78,4 +109,11 @@ td{
 
     font-size:3.8vh;
     
+}
+
+#flags{
+  
+   position:relative;
+   bottom:5.35vh;
+
 }
