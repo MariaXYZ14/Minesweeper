@@ -1,135 +1,127 @@
- var minefield;
- var width;
- var height;
- 
-window.onload = function(){ 
+    var minefield;
+    var width;
+    var height;
     
-    //let button= getButtons('cell1-1');
+    window.onload = function(){ 
+        
+       
+    var mockData=getParametersURL();
 
-   // button.onclick; 
-  
-  
-   var mockData=getParametersURL();
+    if(mockData==''){
 
-   if(mockData==''){
+        //generateRandomMines();
 
-       //generateRandomMines();
-
-   }
-   else{
+    }
+    else{
 
 
-        generateMinesForMockData(mockData);
+            generateMinesForMockData(mockData);
 
-   }
+    }
+    
+    createTable();
+
+    }
+
+    function getParametersURL(){
+        
+        var pageURL = window.location.search.substring(1);
+
+        if(pageURL==''){
+
+            return pageURL
+        }
+        
+        return pageURL.substring(pageURL.indexOf('=')+1).split('/');
+    }
+
    
-   createTable();
+    function generateMinesForMockData(mockData){
+    
+        height = mockData.length;
+        width = mockData[0].length;
 
-}
+        minefield = new Array(height);
+        
+        for( var i=0;i<minefield.length;i++){
 
-function getParametersURL(){
-	
-	var pageURL = window.location.search.substring(1);
+            minefield[i] = new Array(width);
 
-    if(pageURL==''){
+        }
+        
+        console.log(minefield);
+    
+        for( var i=0;i<height;i++){
 
-        return pageURL
+            for( var j=0;j<width;j++){
+        
+                if(mockData[i][j]=='*'){
+                
+                    minefield[i][j] = {
+                
+                        value: 'mines',
+                        visibility: 'hidden',
+                        tag: 'none'
+                    };
+
+                }
+                else{
+                
+                    minefield[i][j] = {
+                
+                        value: 'emptyCell',
+                        visibility: 'hidden',
+                        tag: 'none'
+                    };
+
+                }
+
+            }
+
+        }
+
     }
-    
-    return pageURL.substring(pageURL.indexOf('=')+1).split('/');
-}
 
- /*function getButtons(buttonName){
+    function createTable(){
 
-    let button;
 
-    button = document.getElementById(buttonName);
+        var table=document.getElementById('panel');
 
-    return button;
+        for( var i=0;i<height;i++){
 
-}*/
+            var row =document.createElement('tr');
 
-function generateMinesForMockData(mockData){
-  
-    height = mockData.length;
-    width = mockData[0].length;
+            for( var j=0;j<width;j++){
+                
+                var cell =document.createElement('td');
+                cell.setAttribute('id','cells'+i+'-'+j);
+                cell.onclick = discoverCell.bind(cell,i,j);
+                row.appendChild(cell);
+                 
+            }
 
-    minefield = new Array(height);
-    
-    for( var i=0;i<minefield.length;i++){
+            table.appendChild(row);
 
-        minefield[i] = new Array(width);
-
+        }
+       
     }
-    
-    console.log(minefield);
+
+    function discoverCell(row,column){
+
+
+            if(minefield[row][column].visibility=='hidden'){
+
+                if(minefield[row][column].value=='mines'){
+                   
+
+                    document.getElementById('cells'+row+'-'+column).classList.add("mine");
+
+                }
+                else if(minefield[row][column].value=='emptyCell'){
+
+                    document.getElementById('cells'+row+'-'+column).classList.add("cellWithoutMines");
+
+                }
+            } 
  
-    for( var i=0;i<height;i++){
-
-        for( var j=0;j<width;j++){
-     
-            if(mockData[i][j]=='x'){
-              
-                minefield[i][j] = {
-              
-                    value: 'mines',
-                    visibility: 'hidden',
-                    tag: 'none'
-                };
-
-            }
-            else{
-               
-                minefield[i][j] = {
-              
-                    value: 'emptyCell',
-                    visibility: 'hidden',
-                    tag: 'none'
-                };
-
-            }
-
-        }
-
     }
-
-}
-
-function createTable(){
-
-
-    var table=document.getElementById('panel');
-
-    console.log(width,height);
-
-    for( var i=0;i<height;i++){
-
-        var row =document.createElement('tr');
-
-        for( var j=0;j<width;j++){
-            
-            var cell =document.createElement('td');
-            cell.setAttribute('id','cell'+i+'-'+j);
-            row.appendChild(cell);
-
-        }
-
-        table.appendChild(row);
-
-    }
-
-}
-
-function discoverCell(row,column){
-
-        row=1;
-        column=1;
-        
-        if(!(minefield[row][column].visibility=='hidden')){
-
-            minefield[row][column]
-        } 
-    
-        
-    
-}
