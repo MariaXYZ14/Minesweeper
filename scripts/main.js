@@ -113,9 +113,8 @@
 
                 if(minefield[row][column].value=='mines'){
                    
-
                     document.getElementById('cells'+row+'-'+column).classList.add("mine");
-
+                    
                 }
                 else if(minefield[row][column].value=='emptyCell'){
 

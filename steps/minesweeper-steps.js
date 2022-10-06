@@ -2,7 +2,29 @@ const {Given,When,Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test'); 
 const url="http://127.0.0.1:5500/";
 
+let path=btainURL(string);
 
+function getCellId(string){
+	
+	let cell;
+		
+	let stringComma=string.split(",");
+	let x=stringComma[0];
+	x=x[1]-1;
+	let y=stringComma[1];
+    y=y[0]-1;
+	
+	cell="cells"+x+"-"+y;
+
+	return cell;
+
+}
+
+function obtainURL(string){
+
+	return url+"?="+string;
+
+}
 
 Given('a user opens the app', async () => {
 	
@@ -30,22 +52,36 @@ Then('the width of the minefield should be eight columns', async () => {
 
 //Discovering a cell with a mine, the user should lose the game
 
-  Given('the user load the following board: {string}', async (string) => {
+  	Given('the user load the following board: {string}', async (string) => {
 	
-	/*string=getParametersURL();
-	const panel = await page.locator('data-testid=display').inputValue();
-	expect(panel).toBe(string);*/
-
-	return 'pending';
+	let path= obtainURL(string);
+	await page.goto(path);
 
   });
 
   When('the user discover the cell {string}', async (string) =>{
-	return 'pending';
+	
+    let cellId = getCellId(string);
+	let cell = await page.locator("#"+cellId);
+	await cell.click();
+
   });
 
+ 
   Then('the cell {string} should show a mine', async (string) => {
-	return 'pending';
+   
+	let cellId = getCellId(string);
+	let cell = await page.locator("#"+cellId);
+	let mine;
+	
+	if(path.includes("*")){
+
+		 mines="mines";
+	}
+	
+
+	expect(mines).toBe("mines");  
+   
   });
 
   Then('the game should be over', async (string) => {
