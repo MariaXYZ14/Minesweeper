@@ -40,9 +40,10 @@ Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game
 
+@current
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
-When the user discover  cell "(2,2)"
+When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should show a "<number>"
 
 |    board    |  number |

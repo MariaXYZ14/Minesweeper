@@ -83,6 +83,14 @@ Then('the width of the minefield should be eight columns', async () => {
 
   });
 
+//Discovering all the cells without mine, the user should win the game
+  
+   Then('the user should win the game', async () => {
+	
+	let win= await page.locator("#win").getAttribute('id');
+	expect(win).toBe("win"); 
+	
+  });
 
 //Number of initial not tagged mined counter
 
