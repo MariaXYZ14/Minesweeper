@@ -2,8 +2,6 @@ const {Given,When,Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test'); 
 const url="http://127.0.0.1:5500/";
 
-let path=btainURL(string);
-
 function getCellId(string){
 	
 	let cell;
@@ -72,20 +70,17 @@ Then('the width of the minefield should be eight columns', async () => {
    
 	let cellId = getCellId(string);
 	let cell = await page.locator("#"+cellId);
-	let mine;
+	let mine = await cell.getAttribute('class');
 	
-	if(path.includes("*")){
-
-		 mines="mines";
-	}
-	
-
-	expect(mines).toBe("mines");  
+	expect(mine).toBe("mine");  
    
   });
 
-  Then('the game should be over', async (string) => {
-	return 'pending';
+  Then('the game should be over', async () => {
+	
+	 let gameOver= await page.locator("#gameOver").getAttribute('id');
+	 expect(gameOver).toBe("gameOver");  
+
   });
 
 

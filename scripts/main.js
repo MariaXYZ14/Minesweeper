@@ -1,7 +1,7 @@
     var minefield;
     var width;
     var height;
-    
+    let CountMines=0;
     window.onload = function(){ 
         
        
@@ -55,6 +55,7 @@
 
             for( var j=0;j<width;j++){
         
+
                 if(mockData[i][j]=='*'){
                 
                     minefield[i][j] = {
@@ -63,7 +64,7 @@
                         visibility: 'hidden',
                         tag: 'none'
                     };
-
+                
                 }
                 else{
                 
@@ -108,13 +109,26 @@
 
     function discoverCell(row,column){
 
-
+        
             if(minefield[row][column].visibility=='hidden'){
 
                 if(minefield[row][column].value=='mines'){
                    
                     document.getElementById('cells'+row+'-'+column).classList.add("mine");
-                    
+
+                    for( var i=0;i<height;i++){
+                        for( var j=0;j<width;j++){
+                            if(minefield[i][j].value=='mines'){
+                               
+                                document.getElementById('cells'+i+'-'+j).classList.add("mine");
+                                
+                            }  
+                        }
+                    }
+                    var gameOver =document.createElement('h3');
+                    gameOver.setAttribute('id','gameOver');
+                    document.body.appendChild(gameOver);
+      
                 }
                 else if(minefield[row][column].value=='emptyCell'){
 
