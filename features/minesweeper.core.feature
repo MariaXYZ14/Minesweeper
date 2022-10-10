@@ -40,12 +40,13 @@ Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game
 
-@current
+
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
 When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should show a "<number>"
 
+Examples:
 |    board    |  number |
 | --*/---/--- |    1    |    
 | --*/---/*-- |    2    |
@@ -90,16 +91,20 @@ Given the user load the following board: "<board>"
 When the user tags as mined the cell "(1,1)"
 Then the board should show a "<boardResult>"
 
+Examples:
 |board|boardResult|
 | !-  |     1-    |
 | !-  |   	--    |
 
+@current
 Scenario: Tagging a cell as mined (Tagging with a Flag)
+Given the user load the following board: "--"
 When the user tags as mined the cell "(1,1)"
 Then the cell "(1,1)" should show a flag symbol
 
 Scenario: Mines counter as tagging a cell as mined 
 Given the not tagged mines counter is "10"
+And the user load the following board: "--"
 When the user tags as mined the cell "(1,1)"
 Then the not tagged mines counter should be "9"
 

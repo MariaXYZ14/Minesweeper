@@ -89,8 +89,39 @@ Then('the width of the minefield should be eight columns', async () => {
 	
 	let win= await page.locator("#win").getAttribute('id');
 	expect(win).toBe("win"); 
-	
+
   });
+
+//Discovering a cell with mines around, show the number of surrounding mines(toDo)
+	
+    Then('the cell {string} should show a {string}', async (string, string2)=> {       
+
+		let cellId = getCellId(string);
+		let cell = await page.locator("#"+cellId);
+		await cell.click();
+		
+		let number=string2;
+
+	});
+
+//Tagging a cell as mined (Tagging with a Flag)
+
+	When('the user tags as mined the cell {string}', async (string) => {
+		
+		let cellId = getCellId(string);
+		let cell = await page.locator("#"+cellId);
+	    await cell.click({button:"right"});
+
+	});
+
+	Then('the cell {string} should show a flag symbol', async (string) => {
+		
+		let cellId =getCellId(string);
+		let cell = await page.locator("#"+cellId);
+		let flag = await cell.getAttribute('class');
+	    expect(flag).toBe("flag"); 
+
+	});
 
 //Number of initial not tagged mined counter
 
@@ -100,7 +131,7 @@ Then('the not tagged mined counter should be {string}', async (string) => {
 });
 
 
-//Initial face icon, neutral by default
+//Initial face icon, neutral by default(toDo)
 
 Then('the face icon should be a neutral face', async () => {
 
