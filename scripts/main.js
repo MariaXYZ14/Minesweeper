@@ -173,6 +173,7 @@
     function taggedCell(row,column){
       
         var cell = document.getElementById('cells'+row+'-'+column);
+        var Countflags=parseFloat(document.getElementById("Countflags").innerHTML);
         var clicks= parseFloat(minefield[row][column].clicks);
         clicks++;
         minefield[row][column].clicks=clicks;
@@ -180,12 +181,13 @@
         if(clicks==1 && minefield[row][column].visibility=='hidden' && gameFinished==false){
            
             cell.classList.add("flag");
-
+            Countflags--;
         }
         else if(clicks==2 && minefield[row][column].visibility=='hidden' && gameFinished==false){
            
             cell.classList.remove("flag");
             cell.classList.add("interrogation");
+            Countflags++;
         }
         else{
          
@@ -194,4 +196,7 @@
             minefield[row][column].clicks=0;
 
         }
+
+        document.getElementById("Countflags").innerHTML=Countflags;
+
     }

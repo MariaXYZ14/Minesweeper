@@ -123,6 +123,22 @@ Then('the width of the minefield should be eight columns', async () => {
 
 	});
 
+//Mines counter as tagging a cell as mined 
+
+	Given('the not tagged mines counter is {string}',async (string) => {
+		
+		const taggedMined = await page.locator('data-testid=taggedMined').innerText();
+		expect(taggedMined).toBe(string);
+		
+	});
+
+	Then('the not tagged mines counter should be {string}', async (string) => {
+		
+		const taggedMined = await page.locator('data-testid=taggedMined').innerText();
+		expect(taggedMined).toBe(string);
+
+	});
+
 //Number of initial not tagged mined counter
 
 Then('the not tagged mined counter should be {string}', async (string) => {
