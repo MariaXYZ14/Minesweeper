@@ -139,12 +139,6 @@ Then('the width of the minefield should be eight columns', async () => {
 
 	});
 
-//Number of initial not tagged mined counter
-
-	Then('the not tagged mined counter should be {string}', async (string) => {
-		const taggedMined = await page.locator('data-testid=taggedMined').innerText();
-		expect(taggedMined).toBe(string);
-	});
 
 //Tagging a cell as uncertain mined (Tagging with a Interrogation) 
 
@@ -166,9 +160,18 @@ Then('the width of the minefield should be eight columns', async () => {
 
  	});
 
-//Initial face icon, neutral by default(toDo)
+//Number of initial not tagged mined counter
 
-Then('the face icon should be a neutral face', async () => {
+	Then('the not tagged mined counter should be {string}', async (string) => {
+		const taggedMined = await page.locator('data-testid=taggedMined').innerText();
+		expect(taggedMined).toBe(string);
+	});
 
-	return 'pending';
-  });
+//Initial face icon, neutral by default
+
+	Then('the face icon should be a neutral face', async () => {
+
+		let face = await page.locator('data-testid=face').innerText();
+		expect(face).toBe("😐"); 
+
+	});

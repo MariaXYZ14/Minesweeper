@@ -117,13 +117,13 @@
 
         document.getElementById('cells'+row+'-'+column).classList.remove("flag");
         document.getElementById('cells'+row+'-'+column).classList.remove("interrogation");
-        
+        var face=document.getElementById("face");
+
             if(minefield[row][column].visibility=='hidden' && gameFinished==false){
 
                 if(minefield[row][column].value=='mines'){
                    
                     document.getElementById('cells'+row+'-'+column).classList.add("mine");
-
                     
                     for( var i=0;i<height;i++){
                         
@@ -141,6 +141,7 @@
                     }
 
                     gameFinished=true;
+                    face.innerHTML="&#128577;";
                     var gameOver =document.createElement('h3');
                     gameOver.setAttribute('id','gameOver');
                     document.body.appendChild(gameOver);
@@ -155,7 +156,9 @@
                 }
 
                 if(countIsNotaMine == countEmptyCell){
+                  
                     gameFinished=true;
+                    face.innerHTML="&#128512;";
                     var win =document.createElement('h3');
                     win.setAttribute('id','win');
                     document.body.appendChild(win);

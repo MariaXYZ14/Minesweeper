@@ -108,13 +108,9 @@ And the user load the following board: "--"
 When the user tags as mined the cell "(1,1)"
 Then the not tagged mines counter should be "9"
 
-@current
 Scenario: Tagging a cell as uncertain mined (Tagging with a Interrogation) 
 Given the user load the following board: "--"
 When the user tags as uncertain mined the cell "(1,1)"
 Then the cell "(1,1)" should show a uncertain mined cell symbol
 
-Scenario: Mines countrer as tagging a cell as uncertain mined 
-When the not tagged mines counter should be "9"
-And the user tags as uncertain mined the cell "(1,1)"
-Then the not tagged mines counter should be "10"
+
