@@ -49,19 +49,18 @@ Then the timer should be disabled
 @manual
 Scenario: After 999 seconds, timer should be infinity  
 Given the user set the next mock timer: "999"
-When el usr pone banderita en la 1,1
+When the user tags as mined the cell "(1,1)"
 Then the timer value should be "infinity"
 
-@current
 Scenario: Initial face icon, neutral by default
 Then the face icon should be a neutral face 
 
-@current
 Scenario: State of the face icon, the user lost
 Given the user load the following board: "*-"
 When the user discover cell "(1,1)" should show a mine
 Then the face icon should be a sad face 
 
+@current
 Scenario: State of the face icon, the user wins
 Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"

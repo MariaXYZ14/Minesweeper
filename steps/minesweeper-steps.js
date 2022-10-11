@@ -193,3 +193,10 @@ Then('the width of the minefield should be eight columns', async () => {
 		let face = await page.locator('data-testid=face').innerText();
 		expect(face).toBe("🙁");
     });
+
+//State of the face icon, the user wins
+
+	Then('the user icon should be happy face', async () => {
+		let face = await page.locator('data-testid=face').innerText();
+		expect(face).toBe("😀");
+	});
