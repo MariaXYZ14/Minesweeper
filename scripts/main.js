@@ -103,7 +103,6 @@
                 cell.setAttribute('id','cells'+i+'-'+j);
                 cell.onclick = discoverCell.bind(cell,i,j);
                 cell.oncontextmenu = taggedCell.bind(cell,i,j);
-          //      event.preventDefault();
                 row.appendChild(cell);
                  
             }
@@ -175,6 +174,7 @@
         var cell = document.getElementById('cells'+row+'-'+column);
         var Countflags=parseFloat(document.getElementById("Countflags").innerHTML);
         var clicks= parseFloat(minefield[row][column].clicks);
+        cell.setAttribute('value','');
         clicks++;
         minefield[row][column].clicks=clicks;
         
@@ -188,12 +188,14 @@
             cell.classList.remove("flag");
             cell.classList.add("interrogation");
             Countflags++;
+            cell.setAttribute('value','interrogation');
         }
         else{
          
             cell.classList.remove("interrogation");
             cell.classList.remove("flag");
             minefield[row][column].clicks=0;
+            cell.setAttribute('value','');
 
         }
 

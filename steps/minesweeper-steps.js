@@ -129,7 +129,7 @@ Then('the width of the minefield should be eight columns', async () => {
 		
 		const taggedMined = await page.locator('data-testid=taggedMined').innerText();
 		expect(taggedMined).toBe(string);
-		
+
 	});
 
 	Then('the not tagged mines counter should be {string}', async (string) => {
@@ -141,11 +141,30 @@ Then('the width of the minefield should be eight columns', async () => {
 
 //Number of initial not tagged mined counter
 
-Then('the not tagged mined counter should be {string}', async (string) => {
-	const taggedMined = await page.locator('data-testid=taggedMined').innerText();
-	expect(taggedMined).toBe(string);
-});
+	Then('the not tagged mined counter should be {string}', async (string) => {
+		const taggedMined = await page.locator('data-testid=taggedMined').innerText();
+		expect(taggedMined).toBe(string);
+	});
 
+//Tagging a cell as uncertain mined (Tagging with a Interrogation) 
+
+	When('the user tags as uncertain mined the cell {string}', async (string) => {
+		
+		let cellId = getCellId(string);
+		let cell = await page.locator("#"+cellId);
+	    await cell.click({button:"right"});
+	    await cell.click({button:"right"});
+
+  	});
+
+  	Then('the cell {string} should show a uncertain mined cell symbol', async (string) => {
+		
+		let cellId =getCellId(string);
+		let cell = await page.locator("#"+cellId);
+		let interrogation = await cell.getAttribute('class');
+	    expect(interrogation).toBe("interrogation"); 
+
+ 	});
 
 //Initial face icon, neutral by default(toDo)
 
