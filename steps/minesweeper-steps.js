@@ -175,3 +175,21 @@ Then('the width of the minefield should be eight columns', async () => {
 		expect(face).toBe("😐"); 
 
 	});
+
+//State of the face icon, the user lost
+
+	When('the user discover cell {string} should show a mine', async (string) => {
+		
+		let cellId = getCellId(string);
+		let cell = await page.locator("#"+cellId);
+		await cell.click();
+		let mine = await cell.getAttribute('class');
+		expect(mine).toBe("mine");  
+   
+	});
+
+   Then('the face icon should be a sad face', async () => {
+	
+		let face = await page.locator('data-testid=face').innerText();
+		expect(face).toBe("🙁");
+    });

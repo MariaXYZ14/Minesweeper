@@ -56,6 +56,7 @@ Then the timer value should be "infinity"
 Scenario: Initial face icon, neutral by default
 Then the face icon should be a neutral face 
 
+@current
 Scenario: State of the face icon, the user lost
 Given the user load the following board: "*-"
 When the user discover cell "(1,1)" should show a mine
