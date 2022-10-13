@@ -159,7 +159,7 @@
 
                 }
 
-                if(countEmptyCell==1){
+                if(countEmptyCell==1 && !gameFinished){
                  
                     timerFunction();                
 
@@ -220,33 +220,25 @@
     function timerFunction(){
 
         let timer=0;
-        
-      
+   
         const  myInterval = setInterval(myTimer, 1000);
-              
+        
+            
         function myTimer() {
             timer++;
             document.getElementById("timer").innerHTML = timer;
         }
-
-        if(gameFinished){
-                
-                
+                   
+        function stopTimer(){
+          
+            console.log("timer parado")
             clearInterval(myInterval);
             
-        
-        }       
-               
-            
+        }
 
+        if(gameFinished){stopTimer();}
             
-        
-           
-            
-            
-              
-
-      
+  
     }
 
    
