@@ -4,6 +4,7 @@
     let countEmptyCell=0;
     let countIsNotaMine=0;
     var gameFinished=false;
+    
     window.onload = function(){ 
         
     document.getElementById('game').oncontextmenu=function(event){event.preventDefault();}  
@@ -117,8 +118,8 @@
 
         document.getElementById('cells'+row+'-'+column).classList.remove("flag");
         document.getElementById('cells'+row+'-'+column).classList.remove("interrogation");
-        timerFunction();
-
+       
+        
         var face=document.getElementById("face");
 
             if(minefield[row][column].visibility=='hidden' && gameFinished==false){
@@ -143,6 +144,7 @@
                     }
 
                     gameFinished=true;
+                    timerFunction();                
                     face.innerHTML="&#128577;";
                     var gameOver =document.createElement('h3');
                     gameOver.setAttribute('id','gameOver');
@@ -157,9 +159,16 @@
 
                 }
 
+                if(countEmptyCell==1){
+                 
+                    timerFunction();                
+
+                }
+
                 if(countIsNotaMine == countEmptyCell){
                   
                     gameFinished=true;
+                    timerFunction();                
                     face.innerHTML="&#128512;";
                     var win =document.createElement('h3');
                     win.setAttribute('id','win');
@@ -212,24 +221,31 @@
 
         let timer=0;
         
-        if(!gameFinished){
-          
-            const  myInterval = setInterval(myTimer, 1000);
+      
+        const  myInterval = setInterval(myTimer, 1000);
+              
+        function myTimer() {
+            timer++;
+            document.getElementById("timer").innerHTML = timer;
+        }
 
-            function myTimer() {
-              timer++;
-              document.getElementById("timer").innerHTML = timer;
-            }
-
-        
-           
-        } 
-        else if(gameFinished){
+        if(gameFinished){
                 
                 
             clearInterval(myInterval);
+            
         
-        }
+        }       
+               
+            
+
+            
+        
+           
+            
+            
+              
+
       
     }
 
