@@ -117,7 +117,7 @@
 
         document.getElementById('cells'+row+'-'+column).classList.remove("flag");
         document.getElementById('cells'+row+'-'+column).classList.remove("interrogation");
-        timer();
+        timerFunction();
 
         var face=document.getElementById("face");
 
@@ -208,9 +208,9 @@
 
     }
 
-    function timer(){
+    function timerFunction(){
 
-        timer=0;
+        let timer=0;
         
         if(!gameFinished){
           
