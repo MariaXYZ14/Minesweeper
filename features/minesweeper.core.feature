@@ -40,7 +40,6 @@ Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game
 
-
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
 When the user discover the cell "(2,2)"

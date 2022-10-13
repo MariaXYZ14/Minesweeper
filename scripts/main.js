@@ -117,6 +117,8 @@
 
         document.getElementById('cells'+row+'-'+column).classList.remove("flag");
         document.getElementById('cells'+row+'-'+column).classList.remove("interrogation");
+        timer();
+
         var face=document.getElementById("face");
 
             if(minefield[row][column].visibility=='hidden' && gameFinished==false){
@@ -148,7 +150,7 @@
       
                 }
                 else if(minefield[row][column].value=='emptyCell'){
-                    
+
                     minefield[row][column].visibility='notHidden';
                     document.getElementById('cells'+row+'-'+column).classList.add("cellWithoutMines");
                     countEmptyCell++;
@@ -193,7 +195,7 @@
             Countflags++;
             cell.setAttribute('value','interrogation');
         }
-        else{
+        else if(gameFinished==false){
          
             cell.classList.remove("interrogation");
             cell.classList.remove("flag");
@@ -205,3 +207,30 @@
         document.getElementById("Countflags").innerHTML=Countflags;
 
     }
+
+    function timer(){
+
+        timer=0;
+        
+        if(!gameFinished){
+          
+            const  myInterval = setInterval(myTimer, 1000);
+
+            function myTimer() {
+              timer++;
+              document.getElementById("timer").innerHTML = timer;
+            }
+
+        
+           
+        } 
+        else if(gameFinished){
+                
+                
+            clearInterval(myInterval);
+        
+        }
+      
+    }
+
+   
