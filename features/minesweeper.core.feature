@@ -39,7 +39,7 @@ Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game
 
-@current
+
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
 When the user discover the cell "(2,2)"
@@ -56,9 +56,10 @@ Examples:
 | ***/*--/*** |    7    |
 | ***/*-*/*** |    8    |
 
+@current
 Scenario: Discovering a cell without mine & surrounding mines, should be empty
 Given the user load the following board: "---/---/---/***"
-When the user discover cell  "(2,2)"
+When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should be empty
 
 Scenario: Discovering and empty cell, discover the surrounding cells

@@ -104,6 +104,18 @@ Then('the width of the minefield should be eight columns', async () => {
 
 	});
 
+//Discovering a cell without mine & surrounding mines, should be empty
+
+	Then('the cell {string} should be empty',  async (string) => {
+		
+		let cellId = getCellId(string);
+		let cell = await page.locator("#"+cellId);
+		let emptyCell = await cell.getAttribute('class');
+	
+		expect(emptyCell).toBe("cellWithoutMines"); 
+
+	});
+
 //Tagging a cell as mined (Tagging with a Flag)
 
 	When('the user tags as mined the cell {string}', async (string) => {
