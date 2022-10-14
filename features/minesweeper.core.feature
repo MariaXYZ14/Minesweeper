@@ -28,7 +28,6 @@ Scenario: Validating the dimensions of the minefield
 Then the height of the minefield should be eight rows
 And the width of the minefield should be eight columns
 
-@current
 Scenario: Discovering a cell with a mine, the user should lose the game
 Given the user load the following board: "*-"
 When the user discover the cell "(1,1)"
@@ -40,6 +39,7 @@ Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game
 
+@current
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
 When the user discover the cell "(2,2)"

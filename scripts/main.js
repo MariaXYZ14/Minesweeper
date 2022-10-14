@@ -245,26 +245,64 @@
     }
 
             
-     
+    function isPositionLegal(row,column){
+       
+        let isUndefinedMine=false;
+
+        if(row<0){
+
+            return isUndefinedMine = false;
+
+        }
+        if(column<0){
+
+            return isUndefinedMine = false;
+
+        }
+        if(row>3){
+
+            return isUndefinedMine = false;
+
+        }
+        if(column>3){
+
+            return isUndefinedMine = false;
+
+        }
+        else{
+
+            return isUndefinedMine = true;
+
+        }
+    }
+
+
     function SearchForMinesAround(row,column){
 
         let minesAround=0;
+        let isUndefinedMine;
 
-        for(let i=row-1;i<3;i++){
+            for(let i=row-1;i<3;i++){
 
-            for(let j=column-1;j<3;j++){
+                for(let j=column-1;j<3;j++){
+ 
+                    isUndefinedMine = isPositionLegal(i,j)
 
-                if(minefield[i][j].value=='mines'){
-                    
-                    minesAround++;
-
+                    if(isUndefinedMine && minefield[i][j].value=='mines'){
+                        
+                        minesAround++;
+        
+                    }    
                 }
-
+     
             }
-
-        }
-
+            
         return minesAround;
+
     }
+
+        
+
+    
 
    

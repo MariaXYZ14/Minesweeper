@@ -92,15 +92,15 @@ Then('the width of the minefield should be eight columns', async () => {
 
   });
 
-//Discovering a cell with mines around, show the number of surrounding mines(toDo)
+//Discovering a cell with mines around, show the number of surrounding mines
 	
     Then('the cell {string} should show a {string}', async (string, string2)=> {       
 
 		let cellId = getCellId(string);
-		let cell = await page.locator("#"+cellId);
+	    let cell = await page.locator("#"+cellId);
+		let number = await page.locator("#"+cellId).innerText();
 		await cell.click();
-		
-		let number=string2;
+		expect(number).toBe(string2); 
 
 	});
 
