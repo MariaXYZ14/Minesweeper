@@ -56,15 +56,16 @@ Examples:
 | ***/*--/*** |    7    |
 | ***/*-*/*** |    8    |
 
-@current
+
 Scenario: Discovering a cell without mine & surrounding mines, should be empty
 Given the user load the following board: "---/---/---/***"
 When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should be empty
 
+@current
 Scenario: Discovering and empty cell, discover the surrounding cells
 Given the user load the following board: "---/---/---/***"
-When the user discover cell "(2,2)"
+When the user discover the cell "(2,2)"
 Then the board should look like: "---/---/---/xxx"
 
 Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
@@ -86,16 +87,6 @@ Then the board should look like:
 1-2x
 213x
 """
-Scenario Outline: Discovering a cell is tagged a cell as mined & it is not a hidden mine
-Given the user load the following board: "<board>"
-When the user tags as mined the cell "(1,1)"
-Then the board should show a "<boardResult>"
-
-Examples:
-|board|boardResult|
-| !-  |     1-    |
-| !-  |   	--    |
-
 
 Scenario: Tagging a cell as mined (Tagging with a Flag)
 Given the user load the following board: "--"

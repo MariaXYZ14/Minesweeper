@@ -130,7 +130,7 @@
                    
                     document.getElementById('cells'+row+'-'+column).classList.add("mine");
                     
-                    for( var i=0;i<height;i++){
+                    for( var i=0;i<height;i++){ //showallMines
                         
                         for( var j=0;j<width;j++){
                           
@@ -165,6 +165,11 @@
                        
                         document.getElementById('cells'+row+'-'+column).innerHTML=minesAround;
 
+                    }
+                    else{
+
+                        revealNeighbourCells(row,column)
+                    
                     }
 
                 }
@@ -259,12 +264,12 @@
             return isUndefinedMine = false;
 
         }
-        if(row>3){
+        if(row>=height){
 
             return isUndefinedMine = false;
 
         }
-        if(column>3){
+        if(column>=width){
 
             return isUndefinedMine = false;
 
@@ -276,22 +281,25 @@
         }
     }
 
-
     function SearchForMinesAround(row,column){
 
         let minesAround=0;
         let isUndefinedMine;
 
-            for(let i=row-1;i<3;i++){
+            for(let i=row-1;i<=row+1;i++){
 
-                for(let j=column-1;j<3;j++){
+                for(let j=column-1;j<=column+1;j++){
  
                     isUndefinedMine = isPositionLegal(i,j)
 
-                    if(isUndefinedMine && minefield[i][j].value=='mines'){
-                        
-                        minesAround++;
-        
+                    if(isUndefinedMine){
+                       
+                        if(minefield[i][j].value=='mines'){
+                      
+                            minesAround++;
+                            
+                        }
+                                   
                     }    
                 }
      
@@ -301,8 +309,25 @@
 
     }
 
+    function revealNeighbourCells(row,column){
         
 
-    
+        for(let i=row-1;i<=row+1;i++){
+
+            for(let j=column-1;j<=column+1;j++){
+
+                if(isPositionLegal(i,j)){
+                    
+                    if(minefield[i][j].visibility=='hidden'){
+                  
+                        discoverCell(i,j)
+                        
+                    }
+                       
+                }    
+            }
+ 
+        }
+    }
 
    

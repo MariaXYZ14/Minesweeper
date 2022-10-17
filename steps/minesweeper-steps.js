@@ -116,6 +116,43 @@ Then('the width of the minefield should be eight columns', async () => {
 
 	});
 
+//Discovering and empty cell, discover the surrounding cells(toDo)
+
+	Then('the board should look like: {string}',async (string) => {
+		
+		let mineField= new Array(2);
+
+		for(let i=0;i<string.length;i++){
+
+			for(let j=0;j<string[i].length;j++){
+
+				let cellId= getCellId("("+i+","+j+")");
+				let cell = await page.locator("#"+cellId);
+				let cellClass = await cell.getAttribute('class');
+
+				if(cellClass == 'cellWithoutMines'){
+
+					mineField[i][j]="x"
+				}
+				else{
+					mineField[i][j]="-"
+
+				}
+
+			}
+		}
+
+		for(let i=0;i<string.length;i++){
+
+			for(let j=0;j<string[i].length;j++){
+
+				expect(mineField[i][j]).toBe(string[i][j]); 
+			}
+		}
+    });
+
+//A neighbor discover an empty cell, discover the surrounding cells of the empty cell(toDo)
+
 //Tagging a cell as mined (Tagging with a Flag)
 
 	When('the user tags as mined the cell {string}', async (string) => {
@@ -179,6 +216,8 @@ Then('the width of the minefield should be eight columns', async () => {
 		expect(taggedMined).toBe(string);
 	});
 
+//Tagging a cell as mined but truly isn't a mine(toDo)
+
 //Initial face icon, neutral by default
 
 	Then('the face icon should be a neutral face', async () => {
@@ -212,3 +251,7 @@ Then('the width of the minefield should be eight columns', async () => {
 		let face = await page.locator('data-testid=face').innerText();
 		expect(face).toBe("😀");
 	});
+
+//Reseting a game, restore the innitial state(toDo)
+
+//Resetting game using the face button with the mouse(toDo)
