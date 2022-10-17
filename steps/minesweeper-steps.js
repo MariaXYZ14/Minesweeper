@@ -130,14 +130,14 @@ Then('the width of the minefield should be eight columns', async () => {
 				let cellId= "cells"+i+"-"+j;
 				let cell = await page.locator("#"+cellId);
 				let cellClass = await cell.getAttribute('class');
-
+                
 				if(cellClass == 'cellWithoutMines'){
 
-					minesField+="-"
+					minesField+="-";
 				}
 				else{
 					
-					minesField+="x"
+					minesField+="x";
 
 				}
                 
@@ -156,6 +156,52 @@ Then('the width of the minefield should be eight columns', async () => {
 
 //A neighbor discover an empty cell, discover the surrounding cells of the empty cell(toDo)
 
+Then('the board result should look like:',async (docString) => {
+		
+		let minesField="";
+		let docStringSplit=docString.split("\n");
+
+		for(let i=0;i<docStringSplit.length;i++){
+
+			for(let j=0;j<docStringSplit[i].length;j++){
+
+				let cellId= "cells"+i+"-"+j;
+				let cell = await page.locator("#"+cellId);
+				let cellClass = await cell.getAttribute('class');
+
+				if(cellClass == 'cellWithoutMines'){
+					
+					let number = await cell.innerText();
+
+					if(number==""){
+						
+						minesField+="-";
+
+					}
+					else{
+
+						minesField+=number;
+
+					}
+				}
+				else{
+					
+					minesField+="x";
+
+				}	
+			}
+				
+			if(i!=docStringSplit.length-1){
+				
+				minesField+="\n";
+
+			}
+
+		}
+		
+		expect(minesField).toBe(docString); 
+
+	});
 //Tagging a cell as mined (Tagging with a Flag)
 
 	When('the user tags as mined the cell {string}', async (string) => {

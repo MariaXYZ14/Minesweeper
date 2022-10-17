@@ -62,7 +62,7 @@ Given the user load the following board: "---/---/---/***"
 When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should be empty
 
-@current
+
 Scenario: Discovering and empty cell, discover the surrounding cells
 Given the user load the following board: "---/---/---/***"
 When the user discover the cell "(2,2)"
@@ -75,24 +75,17 @@ Then the board should look like:
 xxx
 """
 
+@current
 Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
-Given the user load the following board:
+Given the user load the following board: "----/---*/---*/----"
+When the user discover the cell "(4,1)"
+Then the board result should look like: 
 
 """
-----
----*
----*
-----
-"""
-
-When the user discover cell "(1,4)"
-Then the board should look like: 
-
-"""
---11
-1-2x
-1-2x
-213x
+--1x
+--2x
+--2x
+--1x
 """
 
 Scenario: Tagging a cell as mined (Tagging with a Flag)
