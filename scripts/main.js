@@ -6,6 +6,7 @@
     var gameFinished=false;
     let timer=0;
     let myInterval;
+    let isTimerInicializated=false;
 
     window.onload = function(){ 
         
@@ -176,7 +177,11 @@
 
                 if(countEmptyCell==1 && !gameFinished){
                  
-                    startTimer();
+                    if(!isTimerInicializated){
+                        
+                        startTimer();
+                        isTimerInicializated=true;
+                    }
 
                 }
 
@@ -184,6 +189,7 @@
                   
                     gameFinished=true;
                     stopTimer();
+                    isTimerInicializated=false;
                     face.innerHTML="&#128512;";
                     var win =document.createElement('h3');
                     win.setAttribute('id','win');
@@ -204,6 +210,13 @@
         cell.setAttribute('value','');
         clicks++;
         minefield[row][column].clicks=clicks;
+        
+        if(!isTimerInicializated){
+                        
+            startTimer();
+            isTimerInicializated=true;
+
+        }
         
         if(clicks==1 && minefield[row][column].visibility=='hidden' && !gameFinished){
            
@@ -329,5 +342,6 @@
  
         }
     }
+
 
    

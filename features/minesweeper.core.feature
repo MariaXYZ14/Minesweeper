@@ -66,7 +66,14 @@ Then the cell "(2,2)" should be empty
 Scenario: Discovering and empty cell, discover the surrounding cells
 Given the user load the following board: "---/---/---/***"
 When the user discover the cell "(2,2)"
-Then the board should look like: "---/---/---/xxx"
+Then the board should look like: 
+
+"""
+---
+---
+---
+xxx
+"""
 
 Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
 Given the user load the following board:

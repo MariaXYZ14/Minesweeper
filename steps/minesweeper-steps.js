@@ -116,39 +116,42 @@ Then('the width of the minefield should be eight columns', async () => {
 
 	});
 
-//Discovering and empty cell, discover the surrounding cells(toDo)
+//Discovering and empty cell, discover the surrounding cells
 
-	Then('the board should look like: {string}',async (string) => {
+	Then('the board should look like:',async (docString) => {
 		
-		let mineField= new Array(2);
+		let minesField="";
+		let docStringSplit=docString.split("\n");
+		
+		for(let i=0;i<docStringSplit.length;i++){
 
-		for(let i=0;i<string.length;i++){
+			for(let j=0;j<docStringSplit[i].length;j++){
 
-			for(let j=0;j<string[i].length;j++){
-
-				let cellId= getCellId("("+i+","+j+")");
+				let cellId= "cells"+i+"-"+j;
 				let cell = await page.locator("#"+cellId);
 				let cellClass = await cell.getAttribute('class');
 
 				if(cellClass == 'cellWithoutMines'){
 
-					mineField[i][j]="x"
+					minesField+="-"
 				}
 				else{
-					mineField[i][j]="-"
+					
+					minesField+="x"
 
 				}
+                
+			}
+			if(i!=docStringSplit.length-1){
+				
+				minesField+="\n";
 
 			}
+
 		}
 
-		for(let i=0;i<string.length;i++){
-
-			for(let j=0;j<string[i].length;j++){
-
-				expect(mineField[i][j]).toBe(string[i][j]); 
-			}
-		}
+		expect(minesField).toBe(docString); 
+	
     });
 
 //A neighbor discover an empty cell, discover the surrounding cells of the empty cell(toDo)
