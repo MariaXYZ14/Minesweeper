@@ -15,7 +15,7 @@
 
     if(mockData==''){
 
-        //generateRandomMines();
+        generateStaticMineField();
 
     }
     else{
@@ -55,9 +55,7 @@
             minefield[i] = new Array(width);
 
         }
-        
-        console.log(minefield);
-    
+            
         for( var i=0;i<height;i++){
 
             for( var j=0;j<width;j++){
@@ -94,6 +92,61 @@
 
     }
 
+    function generateStaticMineField(){
+       
+        let min=0;
+        let max=7;
+        let NumberOfMinesLaid=0;
+        height=8;
+        width=8;
+        countIsNotaMine=54;
+        
+        minefield = new Array(8);
+        
+        for( var i=0;i<8;i++){
+
+            minefield[i] = new Array(8);
+
+        }
+
+        for( var i=0;i<height;i++){
+
+            for( var j=0;j<width;j++){
+
+                minefield[i][j] = {
+                
+                    value: 'emptyCell',
+                    visibility: 'hidden',
+                    tag: 'none',
+                    clicks:'0'
+                };
+
+            
+            }
+        }
+
+              
+        while(NumberOfMinesLaid<10){
+
+        i= Math.floor(Math.random() * (max - min) + min);
+        j= Math.floor(Math.random() * (max - min) + min);
+        console.log(i,j);
+        
+        if(minefield[i][j].value!='mines'){
+            
+            minefield[i][j].value='mines';
+
+
+        }
+
+        NumberOfMinesLaid++;
+
+        }
+       
+  
+    }
+
+    
     function createTable(){
 
         var table=document.getElementById('panel');
@@ -357,9 +410,19 @@
         document.getElementById('face').innerHTML="&#128528;";
         document.getElementById('timer').innerHTML="0";
         document.getElementById('Countflags').innerHTML="10";
-        clearTable();
-        createTable();
-        
+
+        if(getParametersURL()==''){
+           
+            window.location.reload();
+    
+        }
+        else{
+            
+            clearTable();
+            createTable();
+
+        }
+
     }
 
     function clearTable(){
