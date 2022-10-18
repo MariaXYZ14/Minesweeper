@@ -391,3 +391,17 @@ Then('the board result should look like:',async (docString) => {
 	});
 
 //Resetting game using the face button with the mouse(toDo)
+
+	Given('the user discover cell {string}', async (string) => {
+		
+		let cellId = getCellId(string);
+		let cell = await page.locator("#"+cellId);
+		await cell.click();
+
+	});
+	When('the user clicks on face icon', async () => {
+	
+		let face = await page.locator('data-testid=face');
+	    await face.click();
+
+	});

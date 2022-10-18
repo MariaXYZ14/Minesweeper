@@ -75,7 +75,6 @@ Then the board should look like:
 xxx
 """
 
-@current
 Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
 Given the user load the following board: "----/---*/---*/----"
 When the user discover the cell "(4,1)"

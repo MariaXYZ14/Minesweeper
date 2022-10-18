@@ -58,7 +58,7 @@ When the user discover the cell "(1,2)"
 Then the user should win the game 
 And the user icon should be happy face
 
-@current
+
 Scenario: Reseting a game, restore the innitial state
 Given the user load the following board:"*--/---/---"
 And the user discover the cell "(2,1)" 
@@ -81,8 +81,12 @@ xxx
 """
 
 Scenario: Resetting game using the face button with the mouse
-Given the user load the following board:"*--/---/---"
-And the user discover cell "(1,2)" 
-And board should look like: "x1-/---/---"
+Given the user load the following board: "*-"
+And the user discover cell "(1,2)"
+And the user should win the game
 When the user clicks on face icon
-Then the game is reset
+Then board result should look like:
+
+"""
+xx
+"""
