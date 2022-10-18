@@ -154,7 +154,7 @@ Then('the width of the minefield should be eight columns', async () => {
 	
     });
 
-//A neighbor discover an empty cell, discover the surrounding cells of the empty cell(toDo)
+//A neighbor discover an empty cell, discover the surrounding cells of the empty cell
 
 Then('the board result should look like:',async (docString) => {
 		
@@ -168,11 +168,10 @@ Then('the board result should look like:',async (docString) => {
 				let cellId= "cells"+i+"-"+j;
 				let cell = await page.locator("#"+cellId);
 				let cellClass = await cell.getAttribute('class');
+				let number = await cell.innerText();
 
 				if(cellClass == 'cellWithoutMines'){
-					
-					let number = await cell.innerText();
-
+				
 					if(number==""){
 						
 						minesField+="-";
@@ -183,6 +182,17 @@ Then('the board result should look like:',async (docString) => {
 						minesField+=number;
 
 					}
+
+				}
+				else if(number == 'x'){
+					
+					minesField+="X";
+
+				}
+				else if(cellClass == 'mine'){
+					
+					minesField+="*";
+
 				}
 				else{
 					

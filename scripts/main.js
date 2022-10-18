@@ -135,11 +135,16 @@
                         
                         for( var j=0;j<width;j++){
                           
-                            if(minefield[i][j].value=='mines'){
-                                minefield[i][j].visibility='notHidden';
+                            if(document.getElementById('cells'+i+'-'+j).classList.contains("flag")){
                                
                                 document.getElementById('cells'+i+'-'+j).classList.remove("flag");
-                                document.getElementById('cells'+i+'-'+j).classList.remove("interrogation");
+                                document.getElementById('cells'+i+'-'+j).innerHTML="x";
+                                document.getElementById('cells'+i+'-'+j).style.background="white";
+                            }
+
+                            if(minefield[i][j].value=='mines'){
+                            
+                                minefield[i][j].visibility='notHidden';
                                 document.getElementById('cells'+i+'-'+j).classList.add("mine");
 
                             }  
@@ -198,7 +203,8 @@
                 }
 
             } 
- 
+
+
     }
 
 

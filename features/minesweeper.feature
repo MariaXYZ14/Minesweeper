@@ -7,25 +7,18 @@ Background:
 Scenario: Number of initial not tagged mined counter
 Then the not tagged mined counter should be "10"
 
+@current
 Scenario: Tagging a cell as mined but truly isn't a mine
-Given the user load the following board: 
+Given the user load the following board: "*---/--**/----/-*--"
+When the user tags as mined the cell "(2,2)" 
+And the user discover the cell "(1,1)"
+Then the board result should look like:
 
 """
-*---
---**
-----
--*--
-"""
-
-When the user tagged a  mine in cell "(2,2)"
-Then the cell "(2,3)" should show a mine not tagged correctly "X"
-And the board should look like:
-
-"""
-*222
-1X**
-1x32
-1*1-
+*xxx
+xX**
+xxxx
+x*xx
 """
 
 @manual
@@ -60,7 +53,6 @@ Given the user load the following board: "*-"
 When the user discover cell "(1,1)" should show a mine
 Then the face icon should be a sad face 
 
-@current
 Scenario: State of the face icon, the user wins
 Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
