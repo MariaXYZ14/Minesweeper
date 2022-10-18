@@ -26,6 +26,7 @@
     }
     
     createTable();
+    document.getElementById('face').onclick = function(){resettingGame()};
 
     }
 
@@ -100,6 +101,7 @@
         for( var i=0;i<height;i++){
 
             var row =document.createElement('tr');
+            row.setAttribute('id','row'+i);
 
             for( var j=0;j<width;j++){
                 
@@ -346,6 +348,38 @@
                 }    
             }
  
+        }
+    }
+
+    function resettingGame(){
+       
+        stopTimer();
+        document.getElementById('face').innerHTML="&#128528;";
+        document.getElementById('timer').innerHTML="0";
+        document.getElementById('Countflags').innerHTML="10";
+        clearTable();
+        createTable();
+        
+    }
+
+    function clearTable(){
+
+        var table=document.getElementById('panel');
+
+        for( var i=0;i<height;i++){
+
+            var row =document.getElementById('row'+i);
+
+            for( var j=0;j<width;j++){
+                
+                var cell =document.getElementById('cells'+i+'-'+j);
+               
+                row.removeChild(cell);
+                 
+            }
+
+            table.removeChild(row);
+
         }
     }
 

@@ -7,7 +7,6 @@ Background:
 Scenario: Number of initial not tagged mined counter
 Then the not tagged mined counter should be "10"
 
-@current
 Scenario: Tagging a cell as mined but truly isn't a mine
 Given the user load the following board: "*---/--**/----/-*--"
 When the user tags as mined the cell "(2,2)" 
@@ -59,14 +58,27 @@ When the user discover the cell "(1,2)"
 Then the user should win the game 
 And the user icon should be happy face
 
+@current
 Scenario: Reseting a game, restore the innitial state
 Given the user load the following board:"*--/---/---"
-And the user discover cell "(1,2)" 
-And board should look like: "x1-/---/---"
+And the user discover the cell "(2,1)" 
+And board result should look like: 
+
+"""
+xxx
+1xx
+xxx
+"""
 When the user resets the game
 Then the not tagged mines counter should be "10"
 And the timer should be disabled 
-And board should look like:"---/---/---"
+And board result should look like:
+
+"""
+xxx
+xxx
+xxx
+"""
 
 Scenario: Resetting game using the face button with the mouse
 Given the user load the following board:"*--/---/---"

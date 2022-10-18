@@ -275,7 +275,7 @@ Then('the board result should look like:',async (docString) => {
 		expect(taggedMined).toBe(string);
 	});
 
-//Tagging a cell as mined but truly isn't a mine(toDo)
+//Tagging a cell as mined but truly isn't a mine
 
 //Initial face icon, neutral by default
 
@@ -311,6 +311,83 @@ Then('the board result should look like:',async (docString) => {
 		expect(face).toBe("😀");
 	});
 
-//Reseting a game, restore the innitial state(toDo)
+//Reseting a game, restore the innitial state
+
+	Given('the user load the following board:{string}', async (string) => {
+		
+		let path= obtainURL(string);
+		await page.goto(path);
+
+	});
+	
+	Given('board result should look like:', async (docString)=> {
+
+		let minesField="";
+		let docStringSplit=docString.split("\n");
+
+		for(let i=0;i<docStringSplit.length;i++){
+
+			for(let j=0;j<docStringSplit[i].length;j++){
+
+				let cellId= "cells"+i+"-"+j;
+				let cell = await page.locator("#"+cellId);
+				let cellClass = await cell.getAttribute('class');
+				let number = await cell.innerText();
+
+				if(cellClass == 'cellWithoutMines'){
+				
+					if(number==""){
+						
+						minesField+="-";
+
+					}
+					else{
+
+						minesField+=number;
+
+					}
+
+				}
+				else if(number == 'x'){
+					
+					minesField+="X";
+
+				}
+				else if(cellClass == 'mine'){
+					
+					minesField+="*";
+
+				}
+				else{
+					
+					minesField+="x";
+
+				}	
+			}
+				
+			if(i!=docStringSplit.length-1){
+				
+				minesField+="\n";
+
+			}
+
+		}
+		
+		expect(minesField).toBe(docString); 
+	});
+
+	When('the user resets the game', async () => {
+		
+		let face = await page.locator('data-testid=face');
+	    await face.click();
+
+	});
+
+	Then('the timer should be disabled', async () => {
+		
+		let timer = await page.locator('data-testid=timer').innerText();
+		expect(timer).toBe("0"); 
+
+	});
 
 //Resetting game using the face button with the mouse(toDo)
