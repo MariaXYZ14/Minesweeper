@@ -3,7 +3,6 @@ Feature: Minesweeper
 Background:
 	Given a user opens the app
 
-
 Scenario: Number of initial not tagged mined counter
 Then the not tagged mined counter should be "10"
 
@@ -38,12 +37,6 @@ Given the timer should be enabled
 When the user discover cell "(1,3)" should show a mine
 Then the timer should be disabled
 
-@manual
-Scenario: After 999 seconds, timer should be infinity  
-Given the user set the next mock timer: "999"
-When the user tags as mined the cell "(1,1)"
-Then the timer value should be "infinity"
-
 Scenario: Initial face icon, neutral by default
 Then the face icon should be a neutral face 
 
@@ -57,7 +50,6 @@ Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game 
 And the user icon should be happy face
-
 
 Scenario: Reseting a game, restore the innitial state
 Given the user load the following board:"*--/---/---"

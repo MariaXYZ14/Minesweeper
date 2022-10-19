@@ -19,10 +19,8 @@ number of adjacent mines => |1-8|
 cell position on the board => (1,2) means row 1 column 2
 _____________________________
 
-
 Background:
 	Given a user opens the app
-
 
 Scenario: Validating the dimensions of the minefield
 Then the height of the minefield should be eight rows
@@ -38,7 +36,6 @@ Scenario: Discovering all the cells without mine, the user should win the game
 Given the user load the following board: "*-"
 When the user discover the cell "(1,2)"
 Then the user should win the game
-
 
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
@@ -56,12 +53,10 @@ Examples:
 | ***/*--/*** |    7    |
 | ***/*-*/*** |    8    |
 
-
 Scenario: Discovering a cell without mine & surrounding mines, should be empty
 Given the user load the following board: "---/---/---/***"
 When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should be empty
-
 
 Scenario: Discovering and empty cell, discover the surrounding cells
 Given the user load the following board: "---/---/---/***"
@@ -102,5 +97,3 @@ Scenario: Tagging a cell as uncertain mined (Tagging with a Interrogation)
 Given the user load the following board: "--"
 When the user tags as uncertain mined the cell "(1,1)"
 Then the cell "(1,1)" should show a uncertain mined cell symbol
-
-
