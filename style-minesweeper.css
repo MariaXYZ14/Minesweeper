@@ -93,13 +93,14 @@ td{
     border-radius:1vh;
     position:relative;
     bottom:2vh;
-
+    font-size: 4vh; 
+    top:0.5vh;
+  
 }
 
 #life-indicator{
     
     width:4vw;
-    top:0.4vh;
 
 }
 
