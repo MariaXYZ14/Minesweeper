@@ -473,6 +473,7 @@
         gameFinished = false;
         countEmptyCell = 0;
         countIsNotaMine = 0;
+        timer = 0;
         
         clearTable();
         startGame();
