@@ -39,9 +39,10 @@ Then the user should win the game
 
 Scenario Outline: Discovering a cell with mines around, show the number of surrounding mines
 Given the user load the following board: "<board>"
-When the user discover  cell "(2,2)"
+When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should show a "<number>"
 
+Examples:
 |    board    |  number |
 | --*/---/--- |    1    |    
 | --*/---/*-- |    2    |
@@ -54,56 +55,45 @@ Then the cell "(2,2)" should show a "<number>"
 
 Scenario: Discovering a cell without mine & surrounding mines, should be empty
 Given the user load the following board: "---/---/---/***"
-When the user discover cell  "(2,2)"
+When the user discover the cell "(2,2)"
 Then the cell "(2,2)" should be empty
 
 Scenario: Discovering and empty cell, discover the surrounding cells
 Given the user load the following board: "---/---/---/***"
-When the user discover cell "(2,2)"
-Then the board should look like: "---/---/---/xxx"
-
-Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
-Given the user load the following board:
-
-"""
-----
----*
----*
-----
-"""
-
-When the user discover cell "(1,4)"
+When the user discover the cell "(2,2)"
 Then the board should look like: 
 
 """
---11
-1-2x
-1-2x
-213x
+---
+---
+---
+xxx
 """
-Scenario Outline: Discovering a cell is tagged a cell as mined & it is not a hidden mine
-Given the user load the following board: "<board>"
-When the user tags as mined the cell "(1,1)"
-Then the board should show a "<boardResult>"
 
-|board|boardResult|
-| !-  |     1-    |
-| !-  |   	--    |
+Scenario: A neighbor discover an empty cell, discover the surrounding cells of the empty cell
+Given the user load the following board: "----/---*/---*/----"
+When the user discover the cell "(4,1)"
+Then the board result should look like: 
+
+"""
+--1x
+--2x
+--2x
+--1x
+"""
 
 Scenario: Tagging a cell as mined (Tagging with a Flag)
+Given the user load the following board: "--"
 When the user tags as mined the cell "(1,1)"
 Then the cell "(1,1)" should show a flag symbol
 
 Scenario: Mines counter as tagging a cell as mined 
 Given the not tagged mines counter is "10"
+And the user load the following board: "--"
 When the user tags as mined the cell "(1,1)"
 Then the not tagged mines counter should be "9"
 
 Scenario: Tagging a cell as uncertain mined (Tagging with a Interrogation) 
+Given the user load the following board: "--"
 When the user tags as uncertain mined the cell "(1,1)"
 Then the cell "(1,1)" should show a uncertain mined cell symbol
-
-Scenario: Mines countrer as tagging a cell as uncertain mined 
-When the not tagged mines counter should be "9"
-And the user tags as uncertain mined the cell "(1,1)"
-Then the not tagged mines counter should be "10"
