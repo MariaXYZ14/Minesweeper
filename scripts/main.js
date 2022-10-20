@@ -233,7 +233,7 @@
                 
             }    
             
-            if (!isTimerInicializated) {
+            if (!isTimerInicializated && !gameFinished) {
                               
                 startTimer();      
                 isTimerInicializated = true;
@@ -278,8 +278,8 @@
     
     function losed(){ 
         
-        stopTimer();
         isTimerInicializated = false;
+        stopTimer();
         getFace().innerHTML = "&#128577;";
         var gameOver = document.createElement('h3');
         gameOver.setAttribute('id', 'gameOver');
@@ -289,8 +289,8 @@
         
     function winned() {
         
-        stopTimer();
         isTimerInicializated = false;
+        stopTimer();
         getFace().innerHTML = "&#128512;";
         var win = document.createElement('h3');
         win.setAttribute('id', 'win');
